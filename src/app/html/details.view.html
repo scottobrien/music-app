@@ -1,0 +1,17 @@
+<section>
+	<div class="container">
+		<div class="col-xs-12 col-sm-6">
+			<h1>Music App</h1>
+			<hr>
+			<h2 ng-repeat="artist in artist">{{ artist.name }}</h2>
+			<h3>{{ details.item.name }}</h3>
+			<p><strong>Release Date</strong> {{ releaseDate }}</p>
+			<ul class="inline-list">
+				<li><img ng-src="{{ details.item.images[1].url }}" alt="{{ details.item.name }} album image"></li>
+			</ul>
+			<ul class="inline-list" ng-repeat="track in tracks.items">
+				<li>{{ track.name }}</li>
+			</ul>		
+		</div>
+	</div>
+</section>

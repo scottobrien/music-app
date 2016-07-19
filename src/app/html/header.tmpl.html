@@ -1,0 +1,14 @@
+<header>
+	<ul class="inline-list">
+		<li ng-if="header.photoURL">
+			<img ng-src="{{ header.photoURL }}" alt="">
+		</li>
+		<li ng-if="!header.photoURL">
+			TODO: Default pic here if no google pic
+		</li>
+		<li>
+			{{ header.displayName }}
+		</li>
+	</ul>
+	<button type="button" class="btn btn-primary" ng-click="header.logout()">Logout</button>
+</header>

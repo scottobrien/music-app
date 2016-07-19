@@ -1,0 +1,15 @@
+{
+  "name": "fountain-inject",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "^1.5.0",
+    "angular-ui-router": "^0.3.1",
+    "restangular": "^1.5.2",
+    "bootstrap-css-only": "^3.3.6",
+    "firebase": "^3.2.0",
+    "angularfire": "^2.0.1"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.5.0"
+  }
+}
