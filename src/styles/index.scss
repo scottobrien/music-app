@@ -1,3 +1,21 @@
+@import 'header';
+@import 'lists';
+@import 'tables';
+@import 'helpers';
+@import 'login';
+
+html, body {
+	height: 100%;
+}
+
 body {
   background-color: #f8f8f8;
+  padding-bottom: 130px;
+  overflow-y: hidden;
+}
+
+ui-view {
+	height: 100%;
+	display: block;
+	overflow: auto;
 }

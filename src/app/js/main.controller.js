@@ -18,11 +18,6 @@ angular.module('app')
           $log.debug(error);
         });
 
-        vm.goToDetails = function(item) {
-          $log.debug(item);
-          //$state.go('details', {$stateParam: item})
-        };
-
         $log.debug('MainCtrl');
 
     });
