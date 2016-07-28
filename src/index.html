@@ -21,7 +21,9 @@
 
 
   <body ng-app="app">
-    <header-directive ng-if="isLoggedIn"></header-directive>
+    <div ng-if="isLoggedIn">
+      <header-directive></header-directive>  
+    </div>
     <ui-view></ui-view>
   </body>
 

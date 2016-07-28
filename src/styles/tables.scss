@@ -1,3 +1,16 @@
+table {
+
+	tbody {
+
+		tr {
+
+			td {
+				position: relative;
+			}
+		}
+	}
+}
+
 .table-music-list {
 	border-bottom: 1px solid #ddd;
 
@@ -20,6 +33,10 @@
 		tr {
 			border-left: 1px solid #ddd;
 			border-right: 1px solid #ddd;
+
+			.active {
+				background-color: hotpink !important;
+			}
 		}
 
 		tr:hover {
@@ -44,4 +61,7 @@
 //TODO
 .table-tracks {
 
+	.is-active {
+		background-color: #e2f2f9 !important;	
+	}
 }

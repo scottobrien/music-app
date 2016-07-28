@@ -1,25 +1,19 @@
 <section>
 	<div class="container">
 		<div class="col-xs-12">
+			<h2>Albums</h2>
 			<table class="table table-list table-music-list table-albums">
-				<thead>
-					<tr>
-						<th>
-							<h2>Albums</h2>
-						</th>	
-					</tr>
-				</thead>
 				<tbody>
-					<tr class="mouse-over" ng-repeat="item in main.playList.items" ui-sref="details({ id: item.id, item })">
+					<tr class="mouse-over" ng-repeat="item in albumList" ui-sref="details({ id: item.id, item })">
 						<td>
 							<img ng-src="{{ item.images[2].url }}" alt="">
 						</td>
 						<td>
 							{{ item.name }}
 						</td>
-						<td>
+						<!-- <td>
 							<a class="align-right" ui-sref="details({ id: item.id, item })">Details</a>	
-						</td>
+						</td> -->
 					</tr>
 				</tbody>
 			</table>

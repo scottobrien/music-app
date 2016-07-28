@@ -1,0 +1,49 @@
+<div class="modal-header">
+    <h3 class="modal-title">Playlist Add/Create</h3>
+</div>
+<div class="modal-body">
+    <h5>Tracks</h5>
+    <ul>
+        <li ng-repeat="playlistItem in playlist.playlistArr">
+            <span ng-repeat="artist in playlistItem.artists"><strong>{{ artist.name }}</strong></span> - <small>{{ playlistItem.name }}</small>
+        </li>
+    </ul>
+    <hr>
+    <h5>Add to Playlists</h5>
+    <table class="table table-list table-music-list table-tracks">
+        <tbody>
+            <tr class="mouse-over"
+                ng-repeat="playlistList in playlist.playlistListArr"
+                ng-class="{'is-active': playlistList.name === playlist.activeItem}" 
+                ng-click="playlist.initPlaylist(playlistList)">
+                <td>{{ playlistList.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <hr ng-if="!playlist.playlistListArr.length">
+    <h5>Create Playlist</h5>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <div class="col-xs-5">
+                <input type="text" class="form-control" ng-model="playlist.playlistItemName">
+            </div>
+            <div class="col-xs-3">
+                <button type="button" class="btn btn-default" ng-click="playlist.playlistCreateInit()" ng-disabled="!playlist.playlistItemName.length">Create</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button"
+            class="btn btn-default"
+            ng-show="playlist.showGoTo"
+            ng-click="playlist.goToPlaylist()"
+            ng-disabled="!playlist.activeItem">Go to Playlist</button>
+    <button type="button"
+            class="btn btn-primary"
+            ng-click="playlist.addToPlaylist()"
+            ng-disabled="!playlist.activeItem">Add to Playlist</button>
+    <button type="button"
+            class="btn btn-warning"
+            ng-click="playlist.close()">Close</button>
+</div>

@@ -1,0 +1,18 @@
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<h2>Playlists</h2>
+				<table class="table table-list table-music-list table-albums">
+					<tbody>
+						<tr class="mouse-over" ng-repeat="item in playlists.playlistListArr" ui-sref="playlist-details({ id: item.id, item })">
+							<td>
+								{{ item.name }}
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</section>

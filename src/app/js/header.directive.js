@@ -1,12 +1,13 @@
 angular.module('app')
-  .directive('headerDirective', function($log, $rootScope, GoogleAuthService, $timeout) {
+  .directive('headerDirective', function($log, $rootScope, GoogleAuthService, $timeout, UserService) {
     return {
       restrict: 'AE',
       templateUrl: 'app/html/header.tmpl.html',
       controllerAs: 'header',
       controller: function($scope, $rootScope) {
+
         var vm = this;
-        vm.isLoggedIn = $rootScope.isLoggedIn;
+        $scope.isLoggedIn = $rootScope.isLoggedIn;
 
         $timeout(function() {
           vm.displayName = $rootScope.displayName;
@@ -15,6 +16,10 @@ angular.module('app')
         });
 
         vm.logout = function() {
+          UserService.albumArr.$destroy();
+          UserService.playlistArr.$destroy();
+          UserService.userObj.$destroy();
+
           GoogleAuthService.logout();
         };
 

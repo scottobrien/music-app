@@ -6,4 +6,7 @@
 .list-inline {
 	display: inline-block;
 	vertical-align: middle;
+	li {
+		vertical-align: middle;
+	}
 }

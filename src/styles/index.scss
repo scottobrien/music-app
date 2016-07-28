@@ -3,6 +3,7 @@
 @import 'tables';
 @import 'helpers';
 @import 'login';
+@import 'details';
 
 html, body {
 	height: 100%;
@@ -10,7 +11,7 @@ html, body {
 
 body {
   background-color: #f8f8f8;
-  padding-bottom: 130px;
+  padding-bottom: 120px;
   overflow-y: hidden;
 }
 
@@ -18,4 +19,18 @@ ui-view {
 	height: 100%;
 	display: block;
 	overflow: auto;
+}
+
+section {
+	padding: 25px 0px;
+}
+
+h1, h2, h3, h4, h5 {
+	margin-top: 0;
+}
+
+//test
+.test {
+	background-color: hotpink !important;
+	opacity: 1.0 !important;
 }

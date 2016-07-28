@@ -1,0 +1,35 @@
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-6">
+				<h2>Playlist Details</h2>
+				<h4>Playlist: {{ playlistDetails.playlistItem.name }}</h4>
+			</div>
+			<div class="col-xs-6">
+				<div class="text-right">
+					<button class="btn btn-danger" ng-click="playlistDetails.removePlaylist()">Remove Playlist</button>	
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<table class="table table-list table-music-list table-tracks">
+					<tbody>
+						<tr class="mouse-over" 
+							ng-repeat="item in playlistDetails.playlistItem.items"
+							ng-click="details.playlistInit(track, $index)"
+							ng-class="{'is-active' : details.isActive[$index]}">
+							<td>{{ $index+1 }}</td>
+							<td>
+								<span ng-repeat="artist in item.artists">
+									<strong>{{ artist.name }}</strong>
+								</span>
+								 - {{ item.name }}
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</section>
