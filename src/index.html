@@ -22,9 +22,10 @@
 
   <body ng-app="app">
     <div ng-if="isLoggedIn">
-      <header-directive></header-directive>  
+      <header-directive></header-directive>
     </div>
     <ui-view></ui-view>
+    <spinner-directive></spinner-directive>
   </body>
 
   <!-- build:js({.tmp,src}) scripts/vendor.js -->

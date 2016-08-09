@@ -1,30 +1,29 @@
 angular.module('app')
-  .service('UserService', function($log, $http, $firebaseObject, $firebaseArray, $q, $window, $rootScope, Restangular) {
-
-    
+  .service('UserService', function($log, $http, $firebaseObject, $firebaseArray, $window, $rootScope, Restangular) {
 
     var ls = $window.localStorage;
     var userLocalObj = JSON.parse(ls.musicUser);
-
     var albumList = {};
-    
-    // seamgen google uid... xkWktIFflNNqGKsDt8zOKTcDu1A2
     var ref = firebase.database().ref();
     var userObj = $firebaseObject(ref.child('users/' + userLocalObj.uid));
+    var playlistObj = $firebaseObject(ref.child('users/' + userLocalObj.uid));
     var albumArr = $firebaseArray(ref.child('users/' + userLocalObj.uid + '/albumList/items/'));
-
     var playlistArr = $firebaseArray(ref.child('users/' + userLocalObj.uid + '/playlist/items/'));
 
-    //Available Globally
+    //Globals
     $rootScope.displayName = userLocalObj.displayName;
     $rootScope.email = userLocalObj.email;
     $rootScope.photoURL = userLocalObj.photoURL;
 
-
-    
     return {
+      albumArr: albumArr,
+      userObj: userObj,
+      playlistArr: playlistArr,
       userGet: function() {
         return ls.getItem('musicUser');
+      },
+      userCheck: function() {
+        return userObj.$loaded();
       },
       albumListInit: function() {
         $http.get('app/json/musicApp.json').then(function(result) {
@@ -32,7 +31,7 @@ angular.module('app')
           userObj.albumList = albumList;
           userObj.$save().then(function(result) {
             userObj.$destroy();
-            $log.debug('data went up?', result)
+            $log.debug('data went up', result)
           }).catch(function(error) {
             $log.debug('errord', error);
           });
@@ -44,10 +43,6 @@ angular.module('app')
       trackListInit: function(listAddr) {
         return Restangular.oneUrl('spotifyTrack', listAddr).get();
       },
-      albumArr: albumArr,
-      userObj: userObj,
-      playlistArr: playlistArr,
-      ref: ref,
       getAlubumArr: function() {
         return albumArr.$loaded();
       },
@@ -65,11 +60,17 @@ angular.module('app')
       getPlaylistArr: function() {
         return playlistArr.$loaded();
       },
-      playlistRemove: function() {
-        return playlistArr.$remove();
-      },
-      userCheck: function() {
-        return userObj.$loaded();
+      playlistRemove: function(item) {
+        playlistArr.$loaded().then(function(result) {
+          var playlistListArr = result;
+          playlistArr.$remove(_.findIndex(playlistListArr, {'$id': item.$id})).then(function(result) {
+            //$log.debug('removed', result);
+          }).catch(function(error) {
+            $log.debug('playlistArr remove', error);
+          });
+        }).catch(function(error) {
+          $log.debug('getPlaylist', error);
+        });
       }
     };
 
