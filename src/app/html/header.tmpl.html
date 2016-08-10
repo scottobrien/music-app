@@ -1,14 +1,35 @@
 <header>
-	<ul class="inline-list">
-		<li ng-if="header.photoURL">
-			<img ng-src="{{ header.photoURL }}" alt="">
-		</li>
-		<li ng-if="!header.photoURL">
-			TODO: Default pic here if no google pic
-		</li>
-		<li>
-			{{ header.displayName }}
-		</li>
-	</ul>
-	<button type="button" class="btn btn-primary" ng-click="header.logout()">Logout</button>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12">
+				<ul class="inline-list list-plain list-inline header-list header-logo-list pull-left">
+					<li>
+						<h1>
+							Scotify
+						</h1>
+					</li>
+					<li>
+						<a ui-sref="main">Albums</a>
+					</li>
+					<li>
+						<a ui-sref="playlists">Playlists</a>
+					</li>
+				</ul>
+				<ul class="inline-list list-plain header-list list-inline pull-right">
+					<li>
+						{{ header.displayName }}
+					</li>
+					<li ng-if="header.photoURL">
+						<img ng-src="{{ header.photoURL }}" alt="">
+					</li>
+					<li ng-if="!header.photoURL">
+						TODO: Default pic here if no google pic
+					</li>
+					<li>
+						<a href="" ng-click="header.logout()">Logout</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 </header>

@@ -1,27 +1,31 @@
 angular.module('app')
-    .controller('MainCtrl', function($log, GoogleAuthService, UserService, $rootScope, $state) {
+    .controller('MainCtrl', function($log, GoogleAuthService, UserService, $rootScope, $state, $timeout, $scope) {
         var vm = this;
-        vm.playList = {};
+        $scope.albumList = {};
 
         GoogleAuthService.loginCheck();
 
-        UserService.checkUser().then(function(result) {
-          vm.playList = result;
-          if (result === undefined) {
-            UserService.playListInit().then(function(result) {
-              vm.playList = result.data;
-            }).catch(function(error) { 
-              $log.debug(error);
-            });
-          }
-        }).catch(function(error) {
-          $log.debug(error);
-        });
+        $log.debug();
 
-        vm.goToDetails = function(item) {
-          $log.debug(item);
-          //$state.go('details', {$stateParam: item})
-        };
+        //Check user and everything..
+        UserService.userCheck().then(function(result){
+          if (result.$value === null) {
+            UserService.albumListInit().then(function(result) {
+              //$log.debug('albumIniting', result);
+              $scope.albumList = result;
+              return;
+            }).catch(function(error) {
+              $log.debug('albumInit Error', error);
+            });
+            return;
+          }
+          UserService.albumArr.$loaded(function(result) {
+            //$log.debug('Album Arr', result, UserService.albumArr.$value);
+            $scope.albumList = result;
+          }).catch(function(error) {
+            $log.debug('albumArr Error', error);
+          });
+        });
 
         $log.debug('MainCtrl');
 

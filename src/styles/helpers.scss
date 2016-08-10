@@ -1,0 +1,16 @@
+.mouse-over {
+	cursor: pointer;
+}
+
+.no-focus-ring {
+	
+	&:focus {
+		outline: 0;
+	}
+
+	span {
+		&:focus {
+			outline: 0;
+		}
+	}
+}

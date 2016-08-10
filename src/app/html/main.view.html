@@ -1,20 +1,19 @@
 <section>
 	<div class="container">
-		<div class="col-xs-12 col-sm-6">
-			<h1>Music App</h1>
-			<hr>
+		<div class="col-xs-12">
 			<h2>Albums</h2>
-			<div ng-repeat="item in main.playList.items">
-				<ul class="inline-list">
-					<li><img ng-src="{{ item.images[2].url }}" alt=""></li>
-					<li >{{ item.name }}</li>
-					<li><a href="{{ item.href }}">{{ item.href }}</a></li>
-					<li>
-						<a ui-sref="details({ id: item.id, item })">Details</a>	
-					</li>
-				</ul>
-				<hr>
-			</div>
+			<table class="table table-list table-music-list table-albums">
+				<tbody>
+					<tr class="mouse-over" ng-repeat="item in albumList" ui-sref="details({ id: item.id, item })">
+						<td>
+							<img ng-src="{{ item.images[2].url }}" alt="">
+						</td>
+						<td>
+							{{ item.name }}
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </section>

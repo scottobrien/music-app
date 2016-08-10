@@ -1,10 +1,18 @@
 angular.module('app')
-  .service('GoogleAuthService', function($log, AppConfigService, $state, $window, $rootScope) {
+  .service('GoogleAuthService', function($log, AppConfigService, $state, $window, $rootScope, $timeout) {
 
     var provider = new firebase.auth.GoogleAuthProvider();
     var appConfig = AppConfigService.appConfig;
     var ls = $window.localStorage;
     $rootScope.isLoggedIn = ls.getItem('musicCred') ? true : false;
+
+    function logoutTasks() {
+      ls.removeItem('musicCred');
+      ls.removeItem('musicUser');
+      ls.removeItem('albumDetails');
+      ls.removeItem('playlistDetails');
+      $rootScope.isLoggedIn = false;
+    }
 
     return {
       userSave: function(user) {
@@ -20,24 +28,23 @@ angular.module('app')
       },
       logout: function() {
         firebase.auth().signOut().then(function() {
+          logoutTasks();
+          $timeout(function() {
+            $window.location.reload();  
+          });
+          $timeout(function() {
+            $state.go('login');
+          });
           $log.debug('signOut success');
-          ls.removeItem('musicCred');
-          ls.removeItem('musicUser');
-          ls.removeItem('albumDetails');
-          $rootScope.isLoggedIn = false;
-          $state.go('login');
         }).catch(function(error) {
           $log.debug('error', error);
         });
       },
       loginCheck: function() {
-        //$log.debug('loginCheck', $rootScope.isLoggedIn)
         if ($rootScope.isLoggedIn === false) {
           $state.go('login');
         }
       },
       provider: provider
     };
-
-
   });

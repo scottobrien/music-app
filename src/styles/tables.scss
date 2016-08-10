@@ -1,0 +1,81 @@
+table {
+
+	tbody {
+
+		tr {
+
+			td {
+				position: relative;
+			}
+		}
+	}
+}
+
+.table {
+
+	tbody {
+
+		tr {
+
+			td {
+				padding: 10px 15px;
+			}
+		}
+	}
+}
+
+.table-music-list {
+	border-bottom: 1px solid #ddd;
+
+	thead {
+
+		tr {
+
+			th {
+				border-bottom: 0;
+			}
+		}
+	}
+
+	tbody {
+
+		tr:nth-of-type(odd) {
+			background-color: #eee;
+		}
+
+		tr {
+			border-left: 1px solid #ddd;
+			border-right: 1px solid #ddd;
+		}
+
+		tr:hover {
+			background-color: #fff;
+		}
+
+		td {
+			padding: 10px 15px;
+			vertical-align: middle !important;
+		}
+	}
+
+	.checkbox {
+		margin-right: 10px;
+		margin-bottom: -3px;
+	}
+}
+
+//TODO
+.table-albums {
+	
+	td {
+		
+	}
+}
+
+//TODO
+.table-tracks {
+
+	.is-active {
+		background-color: #aee6ff !important;	
+	}
+}

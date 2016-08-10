@@ -1,0 +1,12 @@
+.list-plain {
+	padding-left: 0;
+	list-style: none;
+}
+
+.list-inline {
+	display: inline-block;
+	vertical-align: middle;
+	li {
+		vertical-align: middle;
+	}
+}
