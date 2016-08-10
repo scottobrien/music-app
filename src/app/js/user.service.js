@@ -6,7 +6,7 @@ angular.module('app')
     var albumList = {};
     var ref = firebase.database().ref();
     var userObj = $firebaseObject(ref.child('users/' + userLocalObj.uid));
-    var playlistObj = $firebaseObject(ref.child('users/' + userLocalObj.uid));
+    // For now..var playlistObj = $firebaseObject(ref.child('users/' + userLocalObj.uid));
     var albumArr = $firebaseArray(ref.child('users/' + userLocalObj.uid + '/albumList/items/'));
     var playlistArr = $firebaseArray(ref.child('users/' + userLocalObj.uid + '/playlist/items/'));
 

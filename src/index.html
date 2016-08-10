@@ -24,8 +24,13 @@
     <div ng-if="isLoggedIn">
       <header-directive></header-directive>
     </div>
-    <ui-view></ui-view>
-    <spinner-directive></spinner-directive>
+    <div class="wrap-app">
+      <ui-view></ui-view>
+      <spinner ng-show="spinning" class="spinner-wrap">
+        <div class="spinner"></div>
+        <div class="overlay"></div>
+      </spinner>  
+    </div>
   </body>
 
   <!-- build:js({.tmp,src}) scripts/vendor.js -->

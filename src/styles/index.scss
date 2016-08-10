@@ -5,6 +5,7 @@
 @import 'login';
 @import 'details';
 @import 'forms';
+@import 'spinner';
 
 html, body {
 	height: 100%;
@@ -16,10 +17,11 @@ body {
   overflow-y: hidden;
 }
 
-ui-view {
+.wrap-app{
 	height: 100%;
 	display: block;
 	overflow: auto;
+	position: relative;
 }
 
 section {

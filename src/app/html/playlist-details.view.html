@@ -19,11 +19,13 @@
 							ng-click="details.playlistInit(track, $index)"
 							ng-class="{'is-active' : details.isActive[$index]}">
 							<td>
-								{{ $index+1 }}. 
-								<span ng-repeat="artist in track.artists">
-									<strong>{{ artist.name }}</strong>
-								</span>
-								 - {{ track.name }}
+								<small>
+									{{ $index+1 }}. 
+									<span ng-repeat="artist in track.artists">
+										<strong>{{ artist.name }}</strong>
+									</span>
+									 - {{ track.name }}
+								</small>
 							</td>
 							<td>
 								<div class="text-right mouse-over">
