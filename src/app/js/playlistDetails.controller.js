@@ -1,5 +1,5 @@
 angular.module('app')
-  .controller('PlaylistDetailsCtrl', function($log, GoogleAuthService, $stateParams, $window, UserService, $state) {
+  .controller('PlaylistDetailsCtrl', function($log, GoogleAuthService, $stateParams, $window, UserService, $state, $scope) {
 
     GoogleAuthService.loginCheck();
 

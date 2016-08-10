@@ -11,6 +11,19 @@ table {
 	}
 }
 
+.table {
+
+	tbody {
+
+		tr {
+
+			td {
+				padding: 10px 15px;
+			}
+		}
+	}
+}
+
 .table-music-list {
 	border-bottom: 1px solid #ddd;
 
@@ -33,10 +46,6 @@ table {
 		tr {
 			border-left: 1px solid #ddd;
 			border-right: 1px solid #ddd;
-
-			.active {
-				background-color: hotpink !important;
-			}
 		}
 
 		tr:hover {
@@ -47,6 +56,11 @@ table {
 			padding: 10px 15px;
 			vertical-align: middle !important;
 		}
+	}
+
+	.checkbox {
+		margin-right: 10px;
+		margin-bottom: -3px;
 	}
 }
 
@@ -62,6 +76,6 @@ table {
 .table-tracks {
 
 	.is-active {
-		background-color: #e2f2f9 !important;	
+		background-color: #aee6ff !important;	
 	}
 }

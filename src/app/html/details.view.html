@@ -13,13 +13,18 @@
 			<h4>Tracks</h4>
 			<table class="table table-list table-music-list table-tracks">
 				<tbody>
-					<tr class="mouse-over" 
-						ng-repeat="track in tracks.items"
-						ng-click="details.playlistInit(track, $index)"
-						ng-class="{'is-active' : details.isActive[$index]}">
-						<td>{{ $index+1 }}</td>
+					<tr ng-repeat="track in tracks.items">
 						<td>
-							{{ track.name }}
+							<span 	class="checkbox mouse-over"
+									ng-click="details.playlistInit(track, $index)"
+									ng-class="{'is-active' : details.isActive[$index]}">
+							</span>
+							{{ $index+1 }}. {{ track.name }}
+						</td>
+						<td>
+							<span class="pull-right mouse-over">
+								<audio-track-control></audio-track-control>	
+							</span>
 						</td>
 					</tr>
 				</tbody>

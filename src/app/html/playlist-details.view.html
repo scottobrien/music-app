@@ -15,16 +15,20 @@
 			<div class="col-xs-12">
 				<table class="table table-list table-music-list table-tracks">
 					<tbody>
-						<tr class="mouse-over" 
-							ng-repeat="item in playlistDetails.playlistItem.items"
+						<tr ng-repeat="track in playlistDetails.playlistItem.items"
 							ng-click="details.playlistInit(track, $index)"
 							ng-class="{'is-active' : details.isActive[$index]}">
-							<td>{{ $index+1 }}</td>
 							<td>
-								<span ng-repeat="artist in item.artists">
+								{{ $index+1 }}. 
+								<span ng-repeat="artist in track.artists">
 									<strong>{{ artist.name }}</strong>
 								</span>
-								 - {{ item.name }}
+								 - {{ track.name }}
+							</td>
+							<td>
+								<div class="text-right mouse-over">
+									<audio-track-control></audio-track-control>	
+								</div>
 							</td>
 						</tr>
 					</tbody>

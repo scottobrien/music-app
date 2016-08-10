@@ -11,9 +11,6 @@ angular.module('app')
 
     vm.playlistArr = [];
 
-
-    
-
     $scope.tracks = {};
     $scope.releaseDate = '';
     $scope.artist = '';
@@ -23,7 +20,6 @@ angular.module('app')
       ls.setItem('albumDetails', item);
     }
 
-
     getItem = ls.getItem('albumDetails');
     localDetailsItem = JSON.parse(getItem);
 
@@ -32,13 +28,12 @@ angular.module('app')
 
     UserService.trackListInit(localDetailsItem.item.href).then(function(result) {
       $scope.tracks = result.tracks;
+      //$log.debug($scope.tracks);
       $scope.releaseDate = result.release_date;
       $scope.artist = result.artists;
     }).catch(function(error) {
       $log.debug(error);
     });
-
-
 
     //Rating stuff
     vm.rating = 0;
@@ -61,7 +56,6 @@ angular.module('app')
         PlaylistService.playlistArrService(item, vm.playlistArr);
       });
     }
-
 
     //Add To Playlist modal
     $scope.animationsEnabled = true;

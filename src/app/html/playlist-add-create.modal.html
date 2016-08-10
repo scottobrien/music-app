@@ -4,8 +4,12 @@
 <div class="modal-body">
     <h5>Tracks</h5>
     <ul>
-        <li ng-repeat="playlistItem in playlist.playlistArr">
-            <span ng-repeat="artist in playlistItem.artists"><strong>{{ artist.name }}</strong></span> - <small>{{ playlistItem.name }}</small>
+        <li ng-repeat="track in playlist.playlistArr">
+            <span class="text-right">
+                <audio-track-control></audio-track-control>    
+            </span>
+            <span ng-repeat="artist in track.artists"> <strong>{{ artist.name }}</strong></span> - <small>{{ track.name }}</small> 
+
         </li>
     </ul>
     <hr>
