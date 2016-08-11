@@ -1,8 +1,8 @@
 angular.module('app')
-  .controller('DetailsCtrl', function($log, $stateParams, GoogleAuthService, $window, UserService, PlaylistService, $scope, $uibModal, $timeout) {
+  .controller('DetailsCtrl', function($log, $stateParams, GoogleAuthService, $window, UserService, PlaylistService, $scope, $uibModal, $timeout, SpinnerService) {
 
     GoogleAuthService.loginCheck();
-    
+
     var vm = this;
     var ls = $window.localStorage;
     var item;
@@ -31,6 +31,7 @@ angular.module('app')
       //$log.debug($scope.tracks);
       $scope.releaseDate = result.release_date;
       $scope.artist = result.artists;
+      SpinnerService.spinnerOff();
     }).catch(function(error) {
       $log.debug(error);
     });

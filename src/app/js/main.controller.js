@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('MainCtrl', function($log, GoogleAuthService, UserService, $rootScope, $state, $timeout, $scope) {
+    .controller('MainCtrl', function($log, GoogleAuthService, UserService, $rootScope, $state, $timeout, $scope, SpinnerService) {
         var vm = this;
         $scope.albumList = {};
 
@@ -22,6 +22,7 @@ angular.module('app')
           UserService.albumArr.$loaded(function(result) {
             //$log.debug('Album Arr', result, UserService.albumArr.$value);
             $scope.albumList = result;
+            SpinnerService.spinnerOff();
           }).catch(function(error) {
             $log.debug('albumArr Error', error);
           });
