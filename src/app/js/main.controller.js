@@ -1,7 +1,7 @@
 angular.module('app')
     .controller('MainCtrl', function($log, GoogleAuthService, UserService, $rootScope, $state, $timeout, $scope, SpinnerService) {
         var vm = this;
-        $scope.albumList = {};
+        $scope.albumList = [];
 
         GoogleAuthService.loginCheck();
 

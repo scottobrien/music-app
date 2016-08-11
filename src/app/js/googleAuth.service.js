@@ -29,9 +29,9 @@ angular.module('app')
       logout: function() {
         firebase.auth().signOut().then(function() {
           logoutTasks();
-          $timeout(function() {
-            $window.location.reload();  
-          });
+          // $timeout(function() {
+          //   $window.location.reload();  
+          // });
           $timeout(function() {
             $state.go('login');
           });

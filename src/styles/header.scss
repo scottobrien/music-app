@@ -18,3 +18,20 @@ header {
 		border-radius: 200px;
 	}
 }
+
+.header-profile {
+	display: inline-block;
+	width: 65px;
+	height: 65px;
+	border-radius: 100%;
+	background-color: #eee;
+
+	i {
+		top: 40%;
+		left: 50%;
+		margin-top: -12px;
+		margin-left: -15px;
+		font-size: 32px;
+		color: #ccc;
+	}
+}

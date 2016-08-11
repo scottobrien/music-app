@@ -23,7 +23,9 @@
 						<img ng-src="{{ header.photoURL }}" alt="">
 					</li>
 					<li ng-if="!header.photoURL">
-						TODO: Default pic here if no google pic
+						<span class="header-profile">
+							<i class="glyphicon glyphicon-user"></i>
+						</span>
 					</li>
 					<li>
 						<a href="" ng-click="header.logout()">Logout</a>
