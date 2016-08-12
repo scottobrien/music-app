@@ -1,19 +1,31 @@
 <section>
 	<div class="container">
-		<div class="col-xs-12">
-			<h2>Albums</h2>
-			<table class="table table-list table-music-list table-albums">
-				<tbody>
-					<tr class="mouse-over" ng-repeat="item in albumList" ui-sref="details({ id: item.id, item })">
-						<td>
-							<img ng-src="{{ item.images[2].url }}" alt="">
-						</td>
-						<td>
-							{{ item.name }}
-						</td>
-					</tr>
-				</tbody>
-			</table>
+		<div class="row">
+			<div class="col-xs-6">
+				<h2>Albums</h2>
+			</div>
+			<div class="col-xs-6">
+				<form class="form-inline clearfix">
+					<div class="form-group pull-right">
+						<label for="">Search</label>
+						<input class="form-control" type="text" ng-model="searchVal">
+					</div>
+				</form>
+			</div>
+			<div class="col-xs-12">
+				<table class="table table-list table-music-list table-albums">
+					<tbody>
+						<tr class="mouse-over" ng-repeat="item in albumList | filter:searchVal" ui-sref="details({ id: item.id, item })">
+							<td>
+								<img ng-src="{{ item.images[2].url }}" alt="">
+							</td>
+							<td>
+								{{ item.name }}
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </section>

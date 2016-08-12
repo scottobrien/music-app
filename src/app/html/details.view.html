@@ -1,52 +1,66 @@
 <section>
 	<div class="container">
-		<div class="col-xs-12 col-sm-7">
-			<ul class="inline-list list-plain list-inline">
-				<li>
-					<h2 ng-repeat="artist in artist">{{ artist.name }} -</h2>		
-				</li>
-				<li>
-					<h4>{{ details.item.name }}</h4>		
-				</li>
-			</ul>
-			<h5>Release Date: {{ releaseDate }}</h5>
-			<h4>Tracks</h4>
-			<table class="table table-list table-music-list table-tracks">
-				<tbody>
-					<tr ng-repeat="track in tracks.items">
-						<td>
-							<span 	class="checkbox mouse-over"
-									ng-click="details.playlistInit(track, $index)"
-									ng-class="{'is-active' : details.isActive[$index]}">
-							</span>
-							<small>{{ $index+1 }}. {{ track.name }}</small>
-						</td>
-						<td>
-							<span class="pull-right mouse-over">
-								<audio-track-control></audio-track-control>	
-							</span>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<button class="btn btn-default" type="button" ng-click="details.addToPlaylist()" ng-disabled="!details.playlistArr.length">Add to Playlist</button>
-		</div>
-		<div class="col-xs-12 col-sm-5">
-			<h5>Album Artwork</h5>
-			<p>
-				<span ng-repeat="artist in artist">{{ artist.name }} -</span><span><small>{{ details.item.name }}</small></span>
-			</p>
-			<ul class="inline-list list-plain">
-				<li><img ng-src="{{ details.item.images[1].url }}" alt="{{ details.item.name }} album image"></li>
-			</ul>
-			<ul class="list-inline list-plain">
-				<li>
-					<h5>Album Rating</h5>
-				</li>
-				<li>
-					<span uib-rating class="mouse-over no-focus-ring details-stars" ng-model="rating" max="details.max" read-only="details.isReadonly" ng-click="details.initRating()"></span>
-				</li>
-			</ul>
+		<div class="row">
+			<div class="col-xs-12 col-sm-7">
+				<ul class="inline-list list-plain list-inline">
+					<li>
+						<h2 ng-repeat="artist in artist">{{ artist.name }} -</h2>		
+					</li>
+					<li>
+						<h4>{{ details.item.name }}</h4>		
+					</li>
+				</ul>
+				<h5>Release Date: {{ releaseDate }}</h5>
+				<div class="row">
+					<div class="col-xs-6">
+						<h4 class="shim-top-6">Tracks</h4>	
+					</div>
+					<div class="col-xs-6">
+						<form class="form-inline form-search-wrap clearfix">
+							<div class="form-group pull-right">
+								<label for="">Search</label>
+								<input class="form-control" type="text" ng-model="searchVal">
+							</div>
+						</form>
+					</div>
+				</div>
+				<table class="table table-list table-music-list table-tracks">
+					<tbody>
+						<tr ng-repeat="track in tracks.items | filter: searchVal">
+							<td>
+								<span 	class="checkbox mouse-over"
+										ng-click="details.playlistInit(track, $index)"
+										ng-class="{'is-active' : details.isActive[$index]}">
+								</span>
+								<small>{{ $index+1 }}. {{ track.name }}</small>
+							</td>
+							<td>
+								<span class="pull-right mouse-over">
+									<audio-track-control></audio-track-control>	
+								</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<button class="btn btn-default" type="button" ng-click="details.addToPlaylist()" ng-disabled="!details.playlistArr.length">Add to Playlist</button>
+			</div>
+			<div class="col-xs-12 col-sm-5">
+				<h5>Album Artwork</h5>
+				<p>
+					<span ng-repeat="artist in artist">{{ artist.name }} -</span><span><small>{{ details.item.name }}</small></span>
+				</p>
+				<ul class="inline-list list-plain">
+					<li><img ng-src="{{ details.item.images[1].url }}" alt="{{ details.item.name }} album image"></li>
+				</ul>
+				<ul class="list-inline list-plain">
+					<li>
+						<h5>Album Rating</h5>
+					</li>
+					<li>
+						<span uib-rating class="mouse-over no-focus-ring details-stars" ng-model="rating" max="details.max" read-only="details.isReadonly" ng-click="details.initRating()"></span>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </section>
