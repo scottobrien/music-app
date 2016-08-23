@@ -1,6 +1,5 @@
 angular.module('app')
   .service('UserService', function($log, $http, $firebaseObject, $firebaseArray, $window, $rootScope, Restangular) {
-
     var ls = $window.localStorage;
     var userLocalObj = JSON.parse(ls.musicUser);
     var albumList = {};

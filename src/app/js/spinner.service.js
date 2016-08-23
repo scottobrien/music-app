@@ -6,7 +6,7 @@ angular.module('app')
 
     return {
       spinnerOff: function() {
-        $rootScope.spinning = false;
+        return $rootScope.spinning = false;
       },
       spinnerOn: function() {
         $rootScope.spinning = true;

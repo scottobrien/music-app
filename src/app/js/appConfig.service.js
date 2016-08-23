@@ -1,5 +1,4 @@
 (function() {
-
   angular.module('app')
     .service('AppConfigService', function($log) {
       
@@ -10,10 +9,11 @@
         storageBucket: 'music-app-fee85.appspot.com',
       };
 
+      firebase.initializeApp(appConfig);
+
       return {
         appConfig: appConfig
       };
 
     });
-
 })();
