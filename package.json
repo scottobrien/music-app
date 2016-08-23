@@ -63,5 +63,11 @@
     "extends": [
       "xo-space"
     ]
+  },
+  "dependencies": {
+    "angular-mocks": "^1.5.8",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-jasmine": "^0.3.8"
   }
 }
