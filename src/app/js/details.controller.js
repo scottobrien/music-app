@@ -42,8 +42,10 @@ angular.module('app')
     vm.isReadonly = false;
 
     vm.initRating = function() {
-      UserService.saveAlbumArr(localDetailsItem.item.$id, $scope.rating).then(function(result) {
-        //$log.debug('save?', result);
+      $log.debug('init', localDetailsItem.item.$id, $scope.rating);
+      UserService.saveAlbumArr(localDetailsItem.item.$id, $scope.rating)
+        .then(function(result) {
+        $log.debug('save?', result.key === localDetailsItem.item.$id);
       }).catch(function(error) {
         $log.debug('rating error', error);
       });
