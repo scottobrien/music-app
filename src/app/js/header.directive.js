@@ -18,9 +18,7 @@ angular.module('app')
         vm.logout = function() {
           UserService.albumArr.$destroy();
           UserService.playlistArr.$destroy();
-          //UserService.playlistObj.$destroy();
           UserService.userObj.$destroy();
-
           GoogleAuthService.logout();
         };
 

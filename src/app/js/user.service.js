@@ -47,7 +47,9 @@ angular.module('app')
       },
       saveAlbumArr: function(idx, item) {
         albumArr[idx].albumRating = item;
+        $log.debug('item', albumArr[idx].albumRating);
         idx = parseInt(idx);
+        $log.debug('idx', idx);
         return albumArr.$save(idx);
       },
       playlistAddArr: function(item) {
@@ -62,7 +64,8 @@ angular.module('app')
       playlistRemove: function(item) {
         playlistArr.$loaded().then(function(result) {
           var playlistListArr = result;
-          playlistArr.$remove(_.findIndex(playlistListArr, {'$id': item.$id})).then(function(result) {
+          playlistArr.$remove(_.findIndex(playlistListArr, {'$id': item.$id}))
+            .then(function(result) {
             //$log.debug('removed', result);
           }).catch(function(error) {
             $log.debug('playlistArr remove', error);

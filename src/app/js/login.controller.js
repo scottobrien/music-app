@@ -18,7 +18,6 @@ angular.module('app')
         GoogleAuthService.credentialsSave(result.credential);
         GoogleAuthService.userSave(result.user);
         $timeout(function() {
-          // , { id: result.user.uid }
           $state.go('main');  
         });
         
