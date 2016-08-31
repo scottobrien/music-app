@@ -1,5 +1,5 @@
 angular.module('app')
-  .service('UserService', function($log, $http, $firebaseObject, $firebaseArray, $window, $rootScope, Restangular) {
+  .service('UserService', function($log, $http, $firebaseObject, $firebaseArray, $window, $rootScope, Restangular, SpinnerService) {
     var ls = $window.localStorage;
     var userLocalObj = JSON.parse(ls.musicUser);
     var albumList = {};
@@ -30,6 +30,7 @@ angular.module('app')
           userObj.albumList = albumList;
           userObj.$save().then(function(result) {
             userObj.$destroy();
+            SpinnerService.spinnerOff();
             $log.debug('data went up', result)
           }).catch(function(error) {
             $log.debug('errord', error);
