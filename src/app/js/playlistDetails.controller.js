@@ -1,6 +1,5 @@
 angular.module('app')
-  .controller('PlaylistDetailsCtrl', function($log, GoogleAuthService, $stateParams, $window, UserService, $state, $scope) {
-
+  .controller('PlaylistDetailsCtrl', function ($log, GoogleAuthService, $stateParams, $window, UserService, $state, $scope) {
     GoogleAuthService.loginCheck();
 
     var vm = this;
@@ -18,11 +17,9 @@ angular.module('app')
 
     vm.playlistItem = localDetailsItem.item;
 
-    vm.removePlaylist = function() {
+    vm.removePlaylist = function () {
       var item = vm.playlistItem;
       UserService.playlistRemove(item);
       $state.go('playlists');
     }
-
-    $log.debug('PlaylistDetailsCtrl');
   });

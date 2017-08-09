@@ -1,16 +1,14 @@
 angular.module('app')
-  .service('SpinnerService', function($log, $rootScope) {
+  .service('SpinnerService', function ($log, $rootScope) {
 
     $rootScope.spinning = true;
-    $log.debug('SpinnerService');
 
     return {
-      spinnerOff: function() {
+      spinnerOff: function () {
         return $rootScope.spinning = false;
       },
-      spinnerOn: function() {
+      spinnerOn: function () {
         $rootScope.spinning = true;
       }
     }
-
   });

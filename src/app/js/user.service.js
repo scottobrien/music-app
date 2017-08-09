@@ -1,5 +1,5 @@
 angular.module('app')
-  .service('UserService', function($log, $http, $firebaseObject, $firebaseArray, $window, $rootScope, Restangular, SpinnerService) {
+  .service('UserService', function ($log, $http, $firebaseObject, $firebaseArray, $window, $rootScope, Restangular, SpinnerService) {
     var ls = $window.localStorage;
     var userLocalObj = JSON.parse(ls.musicUser);
     var albumList = {};
@@ -9,7 +9,7 @@ angular.module('app')
     var albumArr = $firebaseArray(ref.child('users/' + userLocalObj.uid + '/albumList/items/'));
     var playlistArr = $firebaseArray(ref.child('users/' + userLocalObj.uid + '/playlist/items/'));
 
-    //Globals
+    // Globals
     $rootScope.displayName = userLocalObj.displayName;
     $rootScope.email = userLocalObj.email;
     $rootScope.photoURL = userLocalObj.photoURL;
@@ -18,63 +18,62 @@ angular.module('app')
       albumArr: albumArr,
       userObj: userObj,
       playlistArr: playlistArr,
-      userGet: function() {
+      userGet: function () {
         return ls.getItem('musicUser');
       },
-      userCheck: function() {
+      userCheck: function () {
         return userObj.$loaded();
       },
-      albumListInit: function() {
-        $http.get('app/json/musicApp.json').then(function(result) {
+      albumListInit: function () {
+        $http.get('app/json/musicApp.json').then(function (result) {
           albumList = result.data;
           userObj.albumList = albumList;
-          userObj.$save().then(function(result) {
+          userObj.$save().then(function (result) {
             userObj.$destroy();
             SpinnerService.spinnerOff();
             $log.debug('data went up', result)
-          }).catch(function(error) {
+          }).catch(function (error) {
             $log.debug('errord', error);
           });
-        }).catch(function(error) {
+        }).catch(function (error) {
             $log.debug('albumListInit error', error);
         });
         return albumArr.$loaded();
       },
-      trackListInit: function(listAddr) {
+      trackListInit: function (listAddr) {
         return Restangular.oneUrl('spotifyTrack', listAddr).get();
       },
-      getAlubumArr: function() {
+      getAlubumArr: function () {
         return albumArr.$loaded();
       },
-      saveAlbumArr: function(idx, item) {
+      saveAlbumArr: function (idx, item) {
         albumArr[idx].albumRating = item;
         $log.debug('item', albumArr[idx].albumRating);
         idx = parseInt(idx);
         $log.debug('idx', idx);
         return albumArr.$save(idx);
       },
-      playlistAddArr: function(item) {
+      playlistAddArr: function (item) {
         return playlistArr.$add(item);
       },
-      playlistSave: function(item) {
+      playlistSave: function (item) {
         return playlistArr.$save(item);
       },
-      getPlaylistArr: function() {
+      getPlaylistArr: function () {
         return playlistArr.$loaded();
       },
-      playlistRemove: function(item) {
+      playlistRemove: function (item) {
         playlistArr.$loaded().then(function(result) {
           var playlistListArr = result;
           playlistArr.$remove(_.findIndex(playlistListArr, {'$id': item.$id}))
-            .then(function(result) {
+            .then(function (result) {
             //$log.debug('removed', result);
-          }).catch(function(error) {
-            $log.debug('playlistArr remove', error);
+          }).catch(function (error) {
+            $log.error('playlistArr remove', error);
           });
-        }).catch(function(error) {
-          $log.debug('getPlaylist', error);
+        }).catch(function (error) {
+          $log.error('getPlaylist', error);
         });
       }
     };
-
   });
