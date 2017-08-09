@@ -1,7 +1,8 @@
 angular.module('app')
-  .config(function($stateProvider, $urlRouterProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     
-    $urlRouterProvider.otherwise('/');
+    // $urlRouterProvider.otherwise('/');
+    $locationProvider.html5Mode(true);
 
     $stateProvider
       .state('login', {
@@ -9,6 +10,12 @@ angular.module('app')
         templateUrl: 'app/html/login.view.html',
         controller: 'LoginCtrl',
         controllerAs: 'login'
+      })
+      .state('spotify-auth', {
+        url: '/spotify-auth/',
+        templateUrl: 'app/html/spotify-auth.view.html',
+        controller: 'SpotifyAuthCtrl',
+        controllerAs: 'spotifyAuth'
       })
       .state('main', {
         url: '/albums/',

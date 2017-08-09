@@ -24,3 +24,22 @@
 .form-search-wrap {
 	margin-bottom: 10px;
 }
+
+.form-spotify-color {
+	color: #2ebd59;
+}
+
+.form-btn-spotify {
+	background-color: #2ebd59;
+	color: white;
+	border-color: #2ebd59;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 2px;
+
+	&:hover {
+		background-color: #1ed760;
+		color: white;
+		border-color: #2ebd59;
+	}
+}
