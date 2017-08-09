@@ -1,0 +1,25 @@
+<section>
+	<div class="login-wrap text-center">
+		<h1>Scottify</h1>
+		<div class="align-center text-muted">
+			Authorize App with <span class="form-spotify-color">Spotify</span>
+		</div>
+		<form action="">
+			<div class="form-group">
+				<br>
+				<button type="button" class="btn btn-default btn-block form-btn-spotify" ng-click="spotifyAuth.initAuth()">Authorize</button>
+				<br>
+				<small class="text-muted">*New addition since, Aug. 2017, must authorize app to spotify</small>
+				<br>
+				<br>
+				<div class="alert alert-danger" ng-if='spotifyAuth.accessDenied'>
+					<strong>Heads up!</strong>
+					<br>
+					Must sign in to Spotify in order for app to work.
+					<br>
+					<small>No personal information is downloaded</small>
+				</div>
+			</div>
+		</form>	
+	</div>
+</section>

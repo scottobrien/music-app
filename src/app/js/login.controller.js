@@ -1,29 +1,28 @@
 angular.module('app')
-  .controller('LoginCtrl', function($log, GoogleAuthService, $state, $window, $rootScope, $scope, $timeout, $window) {
-    
+  .controller('LoginCtrl', function ($log, GoogleAuthService, $state, $rootScope, $scope, $timeout, firebase) {
     var vm = this;
     var provider = GoogleAuthService.provider;
-    var ls = $window.localStorage;
 
-    $log.debug('LoginCtrl');
-
-    if ($rootScope.isLoggedIn) {
-      $state.go('main'); 
+    if ($rootScope.isLoggedIn && $rootScope.spotifyAuth) {
+      $state.go('main');
+      return;
     }
 
+    if ($rootScope.isLoggedIn) {
+      $state.go('spotify-auth');
+      return;
+    }
 
-    vm.initLogin = function() {
-      firebase.auth().signInWithPopup(provider).then(function(result) {
-        $rootScope.isLoggedIn = true;
+    vm.initLogin = function () {
+      firebase.auth().signInWithPopup(provider).then(function (result) {
         GoogleAuthService.credentialsSave(result.credential);
         GoogleAuthService.userSave(result.user);
-        $timeout(function() {
-          $state.go('main');  
+        $timeout(function () {
+          $rootScope.isLoggedIn = true;
+          $state.go('spotify-auth');
         });
-        
-      }).catch(function(error) {
-        $log.debug(error);
+      }).catch(function (error) {
+        $log.error(error);
       });
     };
-    
   });

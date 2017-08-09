@@ -1,6 +1,5 @@
 angular.module('app')
-  .controller('DetailsCtrl', function($log, $stateParams, GoogleAuthService, $window, UserService, PlaylistService, $scope, $uibModal, $timeout, SpinnerService) {
-
+  .controller('DetailsCtrl', function ($log, $stateParams, GoogleAuthService, $window, UserService, PlaylistService, $scope, $uibModal, $timeout, SpinnerService) {
     GoogleAuthService.loginCheck();
 
     var vm = this;
@@ -8,6 +7,7 @@ angular.module('app')
     var item;
     var getItem;
     var localDetailsItem;
+    var accessToken = ls.getItem('spotifyToken'); // Spotify token in order to get track
 
     vm.playlistArr = [];
 
@@ -26,44 +26,42 @@ angular.module('app')
     vm.item = localDetailsItem.item;
     $scope.rating = localDetailsItem.item.albumRating;
 
-    UserService.trackListInit(localDetailsItem.item.href).then(function(result) {
+    UserService.trackListInit(localDetailsItem.item.href + '?access_token=' + accessToken).then(function (result) {
       $scope.tracks = result.tracks;
-      //$log.debug($scope.tracks);
       $scope.releaseDate = result.release_date;
       $scope.artist = result.artists;
       SpinnerService.spinnerOff();
-    }).catch(function(error) {
+    }).catch(function (error) {
       $log.debug(error);
     });
 
-    //Rating stuff
+    //  Rating stuff
     vm.rating = 0;
     vm.max = 5;
     vm.isReadonly = false;
 
-    vm.initRating = function() {
+    vm.initRating = function () {
       $log.debug('init', localDetailsItem.item.$id, $scope.rating);
       UserService.saveAlbumArr(localDetailsItem.item.$id, $scope.rating)
-        .then(function(result) {
+        .then(function (result) {
         $log.debug('save?', result.key === localDetailsItem.item.$id);
-      }).catch(function(error) {
+      }).catch(function (error) {
         $log.debug('rating error', error);
       });
-    }
+    };
 
-    //Playlist init
+    //  Playlist init
     vm.isActive = [];
     vm.playlistInit = function(item, idx) {
       vm.isActive[idx] = !vm.isActive[idx];
-      $timeout(function() {
+      $timeout(function () {
         PlaylistService.playlistArrService(item, vm.playlistArr);
       });
-    }
+    };
 
-    //Add To Playlist modal
+    //  Add To Playlist modal
     $scope.animationsEnabled = true;
-    vm.addToPlaylist = function() {
-      //$log.debug(vm.playlistArr);
+    vm.addToPlaylist = function () {
       var modalInstance = $uibModal.open({
                             animation: $scope.animationsEnabled,
                             size: 'md',
@@ -76,8 +74,6 @@ angular.module('app')
                               }
                             }
                           });
-    }
-
-    $log.debug('DetailsController');
+    };
 
   });
