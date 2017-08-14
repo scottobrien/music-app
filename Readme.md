@@ -1,8 +1,9 @@
 ## Scottify, Music App
 #### Music app based on Spotify's API, uses Google authentication to keep track and Firebase's database to do CRUD
 ##
+Demo: <http://scottify.scott-obrien.com>
 ### Prerequisites
-* Node installed (Tested on v7.10)
+* Node installed (Tested on v7.10, demo'd on 6.x)
 * Gulp -v, (Tested on, CLI version 1.3.0, Local version 4.0.0-alpha.2)
 * Be able to be authenticated by Google
 * Be able to be authenticated by Spotify 
