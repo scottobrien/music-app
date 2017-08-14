@@ -10,6 +10,8 @@ angular.module('app')
     var accessToken = null;
     var ls = $window.localStorage;
     var url = $window.location.href;
+    // Redirect is conditional based upon local or produciton
+    var redirectUri = $window.location.hostname === 'localhost' ? 'http%3A%2F%2Flocalhost%3A3000%2Fspotify-auth%2F' : 'http%3A%2F%2Fscottify.scott-obrien.com%2Fspotify-auth%2F';
     vm.accessDenied = null;
     $rootScope.spotifyAuth = null;
 
@@ -26,9 +28,9 @@ angular.module('app')
       $log.log('there is an error');
       vm.accessDenied = true;
     }
-
+    
     vm.initAuth = function () {
-      $window.location.href = 'https://accounts.spotify.com/authorize?client_id=9d7db3d6b7bb4984b48f51ac379fc91e&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fspotify-auth%2F&response_type=token';
+      $window.location.href = 'https://accounts.spotify.com/authorize?client_id=9d7db3d6b7bb4984b48f51ac379fc91e&redirect_uri=' +  redirectUri + '&response_type=token';
     };
 
   });
